@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="game.css" />
+    </head>
+    <body>
+        <div id="start">
+        <form  > 
+            <p>Select Mode:</p><br>
+
+            
+            <input type ="radio" id="comp" name="mode"  value="single" >
+            <label for ="comp"> Single player</label><br>
+
+            <input type ="radio" id="multi" name="mode"  value="multi" >
+            <label for ="multi"> Multiplayer</label><br>
+            <!--
+
+            <button id="comp">Computer</button>
+            <button id="multi">Multiplayer</button>
+            
+            -->
+
+        </form>
+        
+        <fieldset >
+
+            
+            <section id="multiplayer" >
+                <form >
+                    <p> Multiplayer:</p>
+                    <label for="pl1" > Player 1:</label>
+                    <input type="text" id="pl1" name="pl1"><br>
+
+                    <label for="pl2" > Player 2:</label>
+                    <input type="text" id="pl2" name="pl2"><br>
+                    <input type="submit" value="Submit">
+                </form>
+            </section>
+        
+
+        <section id="computer">
+            <form id="fc">
+                <p> Single Player:</p>
+                <label for="pl" > Player 1:</label>
+                <input type="text" id="pl" name="pl" ><br>
+                <p> Select Difficulty:</p>
+                
+                <input type ="radio" id="easy" name="diff"  value="easy" >
+                <label for ="easy"> Easy </label>
+
+                <input type ="radio" id="hard" name="diff"  value="hard" >
+                <label for ="hard"> Hard</label><br>
+                <input type="submit" value="Submit">
+            </form>
+        </section>
+        </fieldset>
+        </div>
+        <div id="board">
+
+        </div>
+
+        <script src="js/game.js"  type="module" ></script>
+    </body>
+
+</html>

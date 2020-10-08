@@ -1,0 +1,21 @@
+.gameboard {
+    grid-template-columns: repeat(3, 125px);
+    grid-template-rows: repeat(3, 125px);
+}
+.clickable {
+cursor: pointer;
+background-color: blue;
+transition: background-color 0.3s;
+}
+.tile {
+background-color: red;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+.round{
+    border-radius: 5px;
+  }
+.hide{
+    display: none;
+}
