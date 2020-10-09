@@ -1,7 +1,7 @@
 
 import win from "./win.js";
 import ai from "./ai.js";
-
+import makeboard from "./board.js"
 const single = document.querySelector("#comp");
 const multi = document.querySelector("#multi");
 
@@ -30,42 +30,26 @@ multi.addEventListener("click", function() {
 
 
 
-function carr(arr){
-    var table =[];
-        for(var i=0;i<9;i++){
-            table.push(parseInt(arr[i].innerHTML));
-        }
-    return table;
-}
+
 
 
 
 multiplayer.addEventListener( "submit" , function(e){
-    //mode.classList.add("hide");
-    e.preventDefault();
-    const table = document.querySelector("#board");
-    table.style.display="grid";
-    table.classList.add("gameboard");
-    const arr=[];
-    for (var i=0;i<9;i++){
-        const tile=document.createElement("div");
-        tile.classList.add("tile","clickable","round");
-        tile.innerHTML=-100;
-        arr.push( tile );
-    }
     
+    e.preventDefault();
+    
+    const gb = makeboard();
 
-    console.log(arr);
-    arr.forEach((tile)=>{
-        table.appendChild(tile);
+    gb.arr.forEach((tile)=>{
+        gb.table.appendChild(tile);
     });
     var turn=0;
-    arr.forEach((tile)=>{
+    gb.arr.forEach((tile)=>{
         tile.addEventListener(  "click", ()=>{
             //alert("ok");
             if( tile.innerHTML==-100){
                 tile.innerHTML=turn;
-                var h=win(carr(arr) ,turn);
+                var h=win( gb.carr() ,turn);
                 if( ( h==3 && turn==1 ) || ( h==0 && turn==0 )  ){
                     alert("winn");
                     location.reload();
@@ -99,57 +83,44 @@ computer.addEventListener("submit",function(e){
          
 
     e.preventDefault();
-    const table = document.querySelector("#board");
-    table.style.display="grid";
-    table.classList.add("gameboard");
-    const arr=[];
-    for (var i=0;i<9;i++){
-        const tile=document.createElement("div");
-        tile.classList.add("tile","clickable","round");
-        tile.innerHTML=-100;
-        arr.push( tile );
-    }
     
+    const gb = makeboard();
 
-    console.log(p1,p2);
-    arr.forEach((tile)=>{
-        table.appendChild(tile);
+    console.log(p1,p2,gb);
+    
+    gb.arr.forEach((tile)=>{
+        gb.table.appendChild(tile);
     });
+    
+    
     var turn=0;
-    arr.forEach((tile)=>{
+    gb.arr.forEach((tile)=>{
         tile.addEventListener(  "click", ()=>{
             //alert("ok");
             if( tile.innerHTML==-100){
                 tile.innerHTML=turn;
-                var h=win(carr(arr) ,turn);
+                var h=win( gb.carr() ,turn);
                 if( h==0 && turn==0 ){
                     alert("winn"+ turn);
                     location.reload();
                 }
-                var rem=0;
-                for(var i=0;i<9;i++){
-                    if( arr[i].innerHTML=="-100" )rem++;
-                }
-                if(rem==0){
+                
+                if( gb.count()==0){
                     alert("tie");
                     location.reload();
                 }
                 
                 turn =1;
-                var pc=ai(p2,arr);
-                arr[pc].innerHTML=turn;
-                h=win(carr(arr) ,turn);
+                var pc=ai(p2,gb.arr);
+                gb.arr[pc].innerHTML=turn;
+                h=win( gb.carr() ,turn);
                 if( h==3 && turn==1 ){
                     alert("winn "+ turn );
                     location.reload();
                 }
                 
                 
-                rem=0;
-                for(var i=0;i<9;i++){
-                    if( arr[i].innerHTML=="-100" )rem++;
-                }
-                if(rem==0){
+                if( gb.count() ==0){
                     alert("tie");
                     location.reload();
                 }
